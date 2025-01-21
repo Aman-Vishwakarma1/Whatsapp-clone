@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 require("dotenv").config();
 
 const connectToDatabase = require("./config/dataBaseConnect");
@@ -10,7 +11,13 @@ const PORT = process.env.PORT || 3000;
 
 connectToDatabase();
 
-server.use(express.json(), cors());
+server.use(
+  express.json(),
+  cors({
+    origin: process.env.FRONTEND || "*",
+  }),
+  cookieParser()
+);
 
 server.get("/", (req, res) => {
   return res.status(200).json({
