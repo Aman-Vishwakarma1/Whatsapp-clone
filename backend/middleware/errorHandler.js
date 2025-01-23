@@ -5,7 +5,7 @@ const errorHandler = async (err, req, res, next) => {
   res.status(statusCode).json({
     success: false,
     error: {
-      errorMessage,
+      message: errorMessage,
       stack: process.env.NODE_ENV === "production" ? null : err.stack,
     },
   });

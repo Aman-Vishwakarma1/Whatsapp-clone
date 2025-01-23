@@ -7,7 +7,7 @@ const connectToDatabase = require("./config/dataBaseConnect");
 const errorHandler = require("./middleware/errorHandler");
 
 const server = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 
 connectToDatabase();
 
@@ -31,7 +31,7 @@ server.get("/", (req, res) => {
 });
 
 server.use(require("./routes/userRoutes"));
-
+server.use(require("./routes/messageRoutes"));
 server.use(errorHandler);
 
 server.listen(PORT, () => {
